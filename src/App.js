@@ -1,70 +1,44 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import TaskItem from "./components/TaskItem";
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleStateChange = this.handleStateChange.bind(this);
-        this.state = {
-            tasks: [
-                {
-                    id: "1",
-                    description: "Estudar programação",
-                    isCompleted: false,
-                },
-                {
-                    id: "2",
-                    description: "Estudar linguagem",
-                    isCompleted: true,
-                },
-            ],
-        };
-    }
+const App = () => {
+    const [tasks, setTasks] = useState([
+        {
+            id: "1",
+            description: "Estudar programação",
+            isCompleted: false,
+        },
+        {
+            id: "2",
+            description: "Estudar linguagem",
+            isCompleted: true,
+        },
+    ]);
 
-    handleStateChange() {
-        this.setState({
-            tasks: [],
-        });
-    }
+    const fetchTasks = async () => {
+        try {
+            const {data} = await axios.get(
+                "https://task-manager-backend-t7al.onrender.com/tasks"
+            );
+            setTasks(data)
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    render() {
-        return (
-            <>
-                {this.state.tasks.map((task) => (
-                    <TaskItem key={task.id} task={task} />
-                ))}
-                <button onClick={this.handleStateChange}>Limpar tarefas</button>
-            </>
-        );
-    }
-}
+    useEffect(() => {
+        fetchTasks();
+    }, []);
+
+    return (
+        <>
+            {tasks.map((task) => (
+                <TaskItem key={task.id} task={task} />
+            ))}
+        </>
+    );
+};
 
 export default App;
-
-// import { useState } from "react";
-// import TaskItem from "./components/TaskItem";
-
-// const App = () => {
-// const [tasks, setTasks] = useState([
-//     {
-//         id: "1",
-//         description: "Estudar programação",
-//         isCompleted: false,
-//     },
-//     {
-//         id: "2",
-//         description: "Estudar linguagem",
-//         isCompleted: true,
-//     },
-// ]);
-
-//     return (
-//         <>
-//             {tasks.map((task) => (
-//                 <TaskItem key={task.id} task={task}/>
-//             ))}
-//         </>
-//     );
-// };
-
-// export default App;
