@@ -6,6 +6,7 @@ import "./TaskItem.scss";
 
 const TaskItem = ({ task, fetchTasks }) => {
     const alert = useAlert();
+
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
@@ -20,6 +21,23 @@ const TaskItem = ({ task, fetchTasks }) => {
         }
     };
 
+    const handleTaskCompletionChange = async (e) => {
+        try {
+            await axios.patch(
+                `https://task-manager-backend-t7al.onrender.com/tasks/${task._id}`,
+                {
+                    isCompleted: e.target.checked,
+                }
+            );
+
+            await fetchTasks();
+
+            alert.success("A tarefa foi concluída!");
+        } catch (error) {
+            alert.error("Algo deu errado!");
+        }
+    };
+
     return (
         <div className="task-item-container">
             <div className="task-description">
@@ -31,7 +49,11 @@ const TaskItem = ({ task, fetchTasks }) => {
                     }
                 >
                     {task.description}
-                    <input type="checkbox" defaultChecked={task.isCompleted} />
+                    <input
+                        type="checkbox"
+                        defaultChecked={task.isCompleted}
+                        onChange={(e) => handleTaskCompletionChange(e)}
+                    />
                     <span
                         className={
                             task.isCompleted
