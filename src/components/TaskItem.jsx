@@ -4,12 +4,19 @@ import { Message } from "primereact/message";
 
 import "./TaskItem.scss";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, fetchTasks }) => {
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
                 `https://task-manager-backend-t7al.onrender.com/tasks/${task._id}`
             );
+
+            await fetchTasks();
+
+            <Message
+                severity="success"
+                text="A tarefa foi removida com sucesso!"
+            />;
         } catch (error) {
             <Message
                 severity="error"
