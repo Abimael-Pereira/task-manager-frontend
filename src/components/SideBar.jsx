@@ -11,7 +11,7 @@ const SideBar = () => {
             </div>
 
             <div className="sign-out">
-                <CustomButton/>
+                <CustomButton children="Sair"/>
             </div>
         </div>
      );
