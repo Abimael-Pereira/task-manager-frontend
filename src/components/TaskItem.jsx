@@ -1,10 +1,11 @@
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
-import { Message } from "primereact/message";
+import { useAlert } from "react-alert";
 
 import "./TaskItem.scss";
 
 const TaskItem = ({ task, fetchTasks }) => {
+    const alert = useAlert();
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
@@ -13,15 +14,9 @@ const TaskItem = ({ task, fetchTasks }) => {
 
             await fetchTasks();
 
-            <Message
-                severity="success"
-                text="A tarefa foi removida com sucesso!"
-            />;
+            alert.success("Tarefa foi excluída!");
         } catch (error) {
-            <Message
-                severity="error"
-                text="Ocorreu algum erro, tente novamente!"
-            />;
+            alert.error("Ocorreu algum erro!");
         }
     };
 
