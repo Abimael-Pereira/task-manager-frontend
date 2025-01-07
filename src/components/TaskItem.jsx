@@ -16,7 +16,7 @@ const TaskItem = ({ task, fetchTasks }) => {
             await fetchTasks();
 
             alert.success("Tarefa foi excluída!");
-        } catch (error) {
+        } catch (_e) {
             alert.error("Ocorreu algum erro!");
         }
     };
@@ -33,8 +33,8 @@ const TaskItem = ({ task, fetchTasks }) => {
             await fetchTasks();
 
             alert.success("A tarefa foi concluída!");
-        } catch (error) {
-            alert.error("Algo deu errado!");
+        } catch (_e) {
+            alert.error("Ocorreu algum erro!");
         }
     };
 
