@@ -1,25 +1,26 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
-import axios from "axios";
-import { useAlert } from "react-alert";
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import axios from 'axios';
+import { useAlert } from 'react-alert';
 
-import "./Tasks.scss";
+import './Tasks.scss';
 
-import TaskItem from "./TaskItem";
-import AddTask from "./AddTask";
+import TaskItem from './TaskItem';
+import AddTask from './AddTask';
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
 
     const alert = useAlert();
 
-    const fetchTasks = useCallback( async () => {
+    const fetchTasks = useCallback(async () => {
         try {
             const { data } = await axios.get(
-                "https://task-manager-backend-t7al.onrender.com/tasks"
+                'https://task-manager-backend-t7al.onrender.com/tasks'
             );
             setTasks(data);
+            // eslint-disable-next-line no-unused-vars
         } catch (_e) {
-            alert.error("Não foi possível acessar as tarefas");
+            alert.error('Não foi possível acessar as tarefas');
         }
     }, [alert]);
 

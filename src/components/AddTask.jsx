@@ -36,7 +36,7 @@ const AddTask = ({ fetchTasks }) => {
             alert.success("Tarefa criada.");
 
             setTask("");
-        } catch (_e) {
+        } catch {
             alert.error("Ocorreu algum erro!");
         }
     };

@@ -1,8 +1,8 @@
-import "./CustomInput.scss";
+import './CustomInput.scss';
 
 const CustomInput = ({ label, value, onChange, onEnterPress }) => {
     const handleKeyDown = (e) => {
-        if (e.key === "Enter") {
+        if (e.key === 'Enter') {
             onEnterPress();
         }
     };
@@ -20,7 +20,7 @@ const CustomInput = ({ label, value, onChange, onEnterPress }) => {
             {label ? (
                 <label
                     className={`${
-                        value.length > 0 ? "shrink" : ""
+                        value.length > 0 ? 'shrink' : ''
                     } custom-input-label`}
                 >
                     {label}

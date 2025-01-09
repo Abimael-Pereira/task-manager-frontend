@@ -1,8 +1,8 @@
-import { MdDelete } from "react-icons/md";
-import axios from "axios";
-import { useAlert } from "react-alert";
+import { MdDelete } from 'react-icons/md';
+import axios from 'axios';
+import { useAlert } from 'react-alert';
 
-import "./TaskItem.scss";
+import './TaskItem.scss';
 
 const TaskItem = ({ task, fetchTasks }) => {
     const alert = useAlert();
@@ -15,9 +15,9 @@ const TaskItem = ({ task, fetchTasks }) => {
 
             await fetchTasks();
 
-            alert.success("Tarefa foi excluída!");
-        } catch (_e) {
-            alert.error("Ocorreu algum erro!");
+            alert.success('Tarefa foi excluída!');
+        } catch {
+            alert.error('Ocorreu algum erro!');
         }
     };
 
@@ -32,9 +32,9 @@ const TaskItem = ({ task, fetchTasks }) => {
 
             await fetchTasks();
 
-            alert.success("A tarefa foi concluída!");
-        } catch (_e) {
-            alert.error("Ocorreu algum erro!");
+            alert.success('A tarefa foi concluída!');
+        } catch {
+            alert.error('Ocorreu algum erro!');
         }
     };
 
@@ -44,8 +44,8 @@ const TaskItem = ({ task, fetchTasks }) => {
                 <label
                     className={
                         task.isCompleted
-                            ? "checkbox-container-completed"
-                            : "checkbox-container"
+                            ? 'checkbox-container-completed'
+                            : 'checkbox-container'
                     }
                 >
                     {task.description}
@@ -57,8 +57,8 @@ const TaskItem = ({ task, fetchTasks }) => {
                     <span
                         className={
                             task.isCompleted
-                                ? "checkmark completed"
-                                : "checkmark"
+                                ? 'checkmark completed'
+                                : 'checkmark'
                         }
                     ></span>
                 </label>
