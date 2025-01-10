@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { FaPlus } from "react-icons/fa";
-import { useAlert } from "react-alert";
-import axios from "axios";
+import { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import { useAlert } from 'react-alert';
+import axios from 'axios';
 
-import CustomInput from "./CustomInput";
-import CustomButton from "./CustomButton";
+import CustomInput from './CustomInput';
+import CustomButton from './CustomButton';
 
-import "./AddTask.scss";
+import './AddTask.scss';
 
 const AddTask = ({ fetchTasks }) => {
-    const [task, setTask] = useState("");
+    const [task, setTask] = useState('');
 
     const alert = useAlert();
 
@@ -20,11 +20,11 @@ const AddTask = ({ fetchTasks }) => {
     const handleTaskAddition = async () => {
         try {
             if (task.length === 0) {
-                return alert.error("A tarefa está vazia!");
+                return alert.error('A tarefa está vazia!');
             }
 
             await axios.post(
-                "https://task-manager-backend-t7al.onrender.com/tasks",
+                'https://task-manager-backend-t7al.onrender.com/tasks',
                 {
                     description: task,
                     isCompleted: false,
@@ -33,11 +33,11 @@ const AddTask = ({ fetchTasks }) => {
 
             await fetchTasks();
 
-            alert.success("Tarefa criada.");
+            alert.success('Tarefa criada.');
 
-            setTask("");
+            setTask('');
         } catch {
-            alert.error("Ocorreu algum erro!");
+            alert.error('Ocorreu algum erro!');
         }
     };
 
